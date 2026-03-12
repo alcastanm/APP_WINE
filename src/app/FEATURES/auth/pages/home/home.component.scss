@@ -1,0 +1,142 @@
+
+.app-container{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:#f6f6f6;
+  background:linear-gradient(180deg,#2b0f18 0%, #5b1c2b 50%, #8c2f39 100%)
+}
+
+.header{
+  height:60px;
+  display:flex;
+  align-items:center;
+  padding:0 15px;
+  // background:white;
+  background:rgb(35, 35, 35);
+  color:#f7e7c6;
+  border-bottom:1px solid #eee;
+}
+
+
+
+
+.content{
+  flex:1;
+  padding:15px;
+}
+
+
+.wine-image{
+
+  width:100%;
+
+  height:150px;
+
+  object-fit:cover;
+
+}
+
+
+/* GRID */
+
+.grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:18px;
+
+}
+
+
+/* TARJETAS */
+
+.card-option{
+
+  position:relative;
+
+  height:120px;
+
+  border-radius:16px;
+
+  overflow:hidden;
+
+  background-size:cover;
+
+  background-position:center;
+
+  cursor:pointer;
+
+  transition:transform 0.25s;
+
+}
+
+.card-option:hover{
+
+  transform:scale(1.03);
+
+}
+
+/* OVERLAY OSCURO */
+
+.overlay{
+
+  position:absolute;
+
+  inset:0;
+
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.2)
+  );
+
+  display:flex;
+
+  align-items:flex-end;
+
+  padding:14px;
+
+}
+
+/* TITULO */
+
+.title{
+
+  color:white;
+
+  font-size:15px;
+
+  font-weight:600;
+
+}
+
+
+/* FOTOS DE CADA OPCION */
+
+.catalogo{
+  background-image:url("https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?w=600");
+}
+
+.cata{
+  background-image:url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600");
+}
+
+.regiones{
+  background-image:url("https://afar.brightspotcdn.com/dims4/default/864b41d/2147483647/strip/false/crop/3000x1688%2B0%2B281/resize/1200x675%21/quality/90/?url=https%3A%2F%2Fk3-prod-afar-media.s3.us-west-2.amazonaws.com%2Fbrightspot%2F8d%2F7e%2Fdfd985754620a3e24c944a2af36d%2Fvineyards-fall-alexander-valley-by-mariah-harkey-sonoma-county-003-000.jpg");
+}
+
+.favoritos{
+  background-image:url("https://images.unsplash.com/photo-1547592180-85f173990554?w=600");
+}
+
+.miscatas{
+  background-image:url("https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600");
+}
+
+
+.recomendados{
+  background-image:url("https://images.unsplash.com/photo-1568213816046-0f5c0d4f7c3c?w=600");
+}

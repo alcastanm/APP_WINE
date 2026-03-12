@@ -1,0 +1,43 @@
+<div class="app-container">
+
+  <div class="header">
+
+    <div class="user">
+      <img [src]="userPicture" class="avatar">
+      <span>Hola {{userName}}</span>
+    </div>
+
+  </div>
+
+  <!-- <div class="content ">
+
+    <router-outlet></router-outlet>
+
+  </div> -->
+
+  <div class="content"
+      [@routeAnimation]="o.isActivated ? o.activatedRoute : ''">
+
+    <router-outlet #o="outlet"></router-outlet>
+
+  </div>  
+
+  <div class="bottom-nav">
+
+    <div class="nav-item" (click)="goToHome()">
+      
+      <ion-icon name="home-outline" class="bottom-icon"></ion-icon>
+
+    </div>
+
+    <div class="nav-item">
+      <ion-icon name="search-outline" class="bottom-icon"></ion-icon>
+    </div>
+
+    <div class="nav-item">
+      <img [src]="userPicture" class="nav-avatar">
+    </div>
+
+  </div>
+
+</div>

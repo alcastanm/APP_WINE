@@ -1,0 +1,185 @@
+<ion-content class="wine-page" fullscreen #ioncontent>
+
+    <!-- FOTO DEL VINO -->
+
+  <div class="photo-container">
+
+    <div class="photo-circle">
+
+      <img
+        [src]="photo"
+        class="wine-photo">
+
+    </div>
+
+    <!-- botón cámara -->
+
+    <ion-icon
+      name="camera"
+      class="camera-button"
+      (click)="takePhoto()">
+    </ion-icon>
+
+  </div>
+
+  <!-- NOMBRE DEL VINO -->
+
+  <ion-card>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label position="stacked">Nombre del vino</ion-label>
+
+        <ion-input
+          [(ngModel)]="wineName"
+          placeholder="Ej: Marqués de Riscal Reserva" style="  --color:black"
+          (ionInput)="onWineNameInput($event)">
+        </ion-input>
+
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- TIPO DE VINO -->
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <div class="wine-type-container">
+
+        <div
+          class="wine-type"
+          [class.selected]="wineType === 'blanco'"
+          (click)="setWineType('blanco')">
+
+          <span class="emoji">🥂</span>
+          Blanco
+
+        </div>
+
+        <div
+          class="wine-type"
+          [class.selected]="wineType === 'tinto'"
+          (click)="setWineType('tinto')">
+
+          <span class="emoji">🍷</span>
+          Tinto
+
+        </div>
+
+        <div
+          class="wine-type"
+          [class.selected]="wineType === 'rose'"
+          (click)="setWineType('rose')">
+
+          <span class="emoji">🌸</span>
+          Rosé
+
+        </div>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <div class="rating-row">
+        <span>Color</span>
+        <div class="stars">
+          <ion-icon
+            *ngFor="let star of [1,2,3,4,5]"
+            [name]="star <= colorRating ? 'star' : 'star-outline'"
+            (click)="setRating('color', star)">
+          </ion-icon>
+        </div>
+      </div>
+
+      <div class="rating-row">
+        <span>Aroma</span>
+        <div class="stars">
+          <ion-icon
+            *ngFor="let star of [1,2,3,4,5]"
+            [name]="star <= aromaRating ? 'star' : 'star-outline'"
+            (click)="setRating('aroma', star)">
+          </ion-icon>
+        </div>
+      </div>
+
+      <div class="rating-row">
+        <span>Cuerpo</span>
+        <div class="stars">
+          <ion-icon
+            *ngFor="let star of [1,2,3,4,5]"
+            [name]="star <= cuerpoRating ? 'star' : 'star-outline'"
+            (click)="setRating('cuerpo', star)">
+          </ion-icon>
+        </div>
+      </div>
+
+      <div class="rating-row">
+        <span>Sabor</span>
+        <div class="stars">
+          <ion-icon
+            *ngFor="let star of [1,2,3,4,5]"
+            [name]="star <= saborRating ? 'star' : 'star-outline'"
+            (click)="setRating('sabor', star)">
+          </ion-icon>
+        </div>
+      </div>
+
+      <div class="rating-row">
+        <span>Final</span>
+        <div class="stars">
+          <ion-icon
+            *ngFor="let star of [1,2,3,4,5]"
+            [name]="star <= finalRating ? 'star' : 'star-outline'"
+            (click)="setRating('final', star)">
+          </ion-icon>
+        </div>
+      </div>
+
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <!-- NOTAS -->
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>Notas de Cata</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-textarea
+        auto-grow="true"
+        placeholder="Describe aromas, sensaciones, recuerdos, etc..."
+        [(ngModel)]="notes">
+      </ion-textarea>
+
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <!-- BOTÓN GUARDAR -->
+
+  <ion-button 
+    expand="block"
+    (click)="saveWineNote()"
+    class="save-button ">
+
+    Guardar Nota
+
+  </ion-button>
+
+</ion-content>
