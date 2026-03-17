@@ -1,6 +1,7 @@
-<ion-content class="wine-page" fullscreen #ioncontent>
+<ion-content class="wine-page" fullscreen #ioncontent     [scrollEvents]="true"
+    keyboardResize="ionic">
 
-    <!-- FOTO DEL VINO -->
+    
 
   <div class="photo-container">
 
@@ -12,7 +13,7 @@
 
     </div>
 
-    <!-- botón cámara -->
+    
 
     <ion-icon
       name="camera"
@@ -22,27 +23,23 @@
 
   </div>
 
-  <!-- NOMBRE DEL VINO -->
+
 
   <ion-card>
     <ion-card-content>
-
       <ion-item>
         <ion-label position="stacked">Nombre del vino</ion-label>
-
-        <ion-input
+        <ion-input type="text"
           [(ngModel)]="wineName"
-          placeholder="Ej: Marqués de Riscal Reserva" style="  --color:black"
+          placeholder="Ej: Marqués de Riscal Reserva"
           (ionInput)="onWineNameInput($event)">
         </ion-input>
-
       </ion-item>
-
     </ion-card-content>
   </ion-card>
 
 
-  <!-- TIPO DE VINO -->
+
 
   <ion-card>
 
@@ -94,7 +91,7 @@
         <span>Color</span>
         <div class="stars">
           <ion-icon
-            *ngFor="let star of [1,2,3,4,5]"
+            *ngFor="let star of stars"
             [name]="star <= colorRating ? 'star' : 'star-outline'"
             (click)="setRating('color', star)">
           </ion-icon>
@@ -105,7 +102,7 @@
         <span>Aroma</span>
         <div class="stars">
           <ion-icon
-            *ngFor="let star of [1,2,3,4,5]"
+            *ngFor="let star of stars"
             [name]="star <= aromaRating ? 'star' : 'star-outline'"
             (click)="setRating('aroma', star)">
           </ion-icon>
@@ -116,7 +113,7 @@
         <span>Cuerpo</span>
         <div class="stars">
           <ion-icon
-            *ngFor="let star of [1,2,3,4,5]"
+            *ngFor="let star of stars"
             [name]="star <= cuerpoRating ? 'star' : 'star-outline'"
             (click)="setRating('cuerpo', star)">
           </ion-icon>
@@ -127,7 +124,7 @@
         <span>Sabor</span>
         <div class="stars">
           <ion-icon
-            *ngFor="let star of [1,2,3,4,5]"
+            *ngFor="let star of stars"
             [name]="star <= saborRating ? 'star' : 'star-outline'"
             (click)="setRating('sabor', star)">
           </ion-icon>
@@ -138,7 +135,7 @@
         <span>Final</span>
         <div class="stars">
           <ion-icon
-            *ngFor="let star of [1,2,3,4,5]"
+            *ngFor="let star of stars"
             [name]="star <= finalRating ? 'star' : 'star-outline'"
             (click)="setRating('final', star)">
           </ion-icon>
@@ -150,7 +147,7 @@
   </ion-card>
 
 
-  <!-- NOTAS -->
+
 
   <ion-card>
 
@@ -165,13 +162,11 @@
         placeholder="Describe aromas, sensaciones, recuerdos, etc..."
         [(ngModel)]="notes">
       </ion-textarea>
-
     </ion-card-content>
-
   </ion-card>
 
 
-  <!-- BOTÓN GUARDAR -->
+
 
   <ion-button 
     expand="block"

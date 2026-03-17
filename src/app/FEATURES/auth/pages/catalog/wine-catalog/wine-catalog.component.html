@@ -1,12 +1,56 @@
-<div class="catalog-container">
+<ion-content class="catalog-container">
 
   <!-- BUSCADOR -->
-
   <div class="search-container">
     <input type="text" placeholder="🔎 Buscar vino...">
   </div>
 
   <!-- FILTROS -->
+  <div class="filters">
+    <div class="filter active" (click)="getWinesByFilter('todos')">Todos</div>
+    <div class="filter" (click)="getWinesByFilter('tinto')">Tintos</div>
+    <div class="filter" (click)="getWinesByFilter('blanco')">Blancos</div>
+    <div class="filter" (click)="getWinesByFilter('rose')">Rosé</div>
+    <div class="filter">España</div>
+    <div class="filter">Francia</div>
+    <div class="filter">Argentina</div>
+  </div>
+
+  <!-- SCROLLABLE GRID -->
+  <div class="wine-grid-container">
+    <div class="wine-grid">
+      <div class="wine-card" *ngFor="let wine of wines">
+        <img [src]="wine.photo" class="wine-image">
+        <div class="wine-info">
+          <div class="wine-name">{{ wine.wine_name }}</div>
+          <div class="wine-region">{{ wine.region ? wine.region.name + '-' + wine.region.country : '' }}</div>
+          <div class="wine-rating">
+            <span *ngFor="let s of stars">
+              <ng-container *ngIf="wine.rating >= s">⭐</ng-container>
+              <ng-container *ngIf="wine.rating < s && wine.rating > s-1">◐</ng-container>
+              <ng-container *ngIf="wine.rating <= s-1">☆</ng-container>
+            </span>
+            {{ wine.rating }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+
+
+
+<!-- <ion-content class="catalog-container" >
+
+  
+
+  <div class="search-container">
+    <input type="text" placeholder="🔎 Buscar vino...">
+  </div>
+
+  
 
   <div class="filters">
 
@@ -20,9 +64,9 @@
 
   </div>
 
-  <!-- GRID DE VINOS -->
+  
 
-  <div class="wine-grid">
+  <div class="wine-grid" >
 
     <div class="wine-card" *ngFor="let wine of wines">
 
@@ -54,4 +98,4 @@
     </div>
   </div>
 
-</div>
+</ion-content> -->

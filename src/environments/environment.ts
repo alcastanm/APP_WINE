@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   uri_api:'https://localhost:44377/api/',
   // uri_apiPython:'http://127.0.0.1:8000',
-   uri_apiPython:window.location.origin,
+  uri_apiPython:window.location.origin,
   wineImages:'https://res.cloudinary.com/dn2qs6ce4/image/upload/Images/',
   winesFolder: "wine/",
 };

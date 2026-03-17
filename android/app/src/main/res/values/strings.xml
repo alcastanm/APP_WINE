@@ -4,4 +4,5 @@
     <string name="title_activity_main">mobile-app</string>
     <string name="package_name">com.example.app</string>
     <string name="custom_url_scheme">com.example.app</string>
+    <string name="server_client_id">600105232081-69d49eheefcseqgth4mpu5kjev3i9k2r.apps.googleusercontent.com</string>
 </resources>

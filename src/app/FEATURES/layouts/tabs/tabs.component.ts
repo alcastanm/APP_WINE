@@ -28,8 +28,8 @@ export class TabsComponent  implements OnInit {
               private zone: NgZone) 
               { 
                 addIcons({
-                  homeOutline,
-                  searchOutline
+                  'my-home':homeOutline,
+                  'my-search':searchOutline
                 });
 
               }

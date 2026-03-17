@@ -1,37 +1,40 @@
-.app-container{
-  height:100dvh;
-  display:flex;
-  flex-direction:column;
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Altura total de pantalla */
 }
 
-.header{
-  background:#1c1c1c;
-  color:white;
-  padding:12px;
+.header {
+  background: #1c1c1c;
+  color: white;
+  padding: 12px;
+  flex-shrink: 0;
 }
 
-.content{
-  flex:1;
-  overflow:auto;
+/* ⚡ Aquí está la clave: bloque, no flex */
+.content {
+  flex: 1 1 auto; 
+  min-height: 0;
+  display: block;       /* ⚡ importante */
+  overflow: visible;    /* ⚡ permite renderizado de ion-input */
 }
 
-.bottom-nav{
 
-  height:75px;
+.bottom-nav {
+  height: calc(75px + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
 
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-  background:#411421;
+  background: #411421;
 
-  backdrop-filter:blur(12px);
-
-  border-top:1px solid rgba(255,255,255,0.08);
-
-  position:relative;
-
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
 }
+
 
 .nav-item{
 
@@ -96,5 +99,3 @@
   border-radius:50%;
   margin-right:10px;
 }
-
-

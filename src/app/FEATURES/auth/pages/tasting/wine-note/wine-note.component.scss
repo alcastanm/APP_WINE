@@ -21,7 +21,7 @@
 
   font-size: 24px;
 
-  color: #d4af37;
+  color: #d4af37 !important;
 
 }
 
@@ -82,7 +82,7 @@
 
 ion-content{
   flex:1;
-  --background: transparent;
+  --background: #2b0f18;;
 }
 
 ion-item
@@ -100,13 +100,22 @@ ion-card-title
 ion-input,
 ion-textarea{
 
-  --color:gainsboro;
+  --color:#5b1c2b;
+  color:#5b1c2b;
+ion-input {
+  width: 100%;       /* ⚡ crucial en Android */
+  display: block;    /* ⚡ fuerza renderizado */
+}  
 
 }
 
 .wine-page {
   --background: linear-gradient(180deg,#2b0f18 0%, #5b1c2b 50%, #8c2f39 100%);
-  padding-bottom: 80px; /* espacio para botón al final */
+  background: linear-gradient(180deg,#2b0f18 0%, #5b1c2b 50%, #8c2f39 100%);
+  display: flex;
+  flex-direction: column;
+  height: 100%; // ⚡ ion-content ocupa todo el contenedor
+  --padding-bottom: calc(75px + env(safe-area-inset-bottom, 10px));
 }
 
 .photo-container {
@@ -163,6 +172,8 @@ ion-card {
   border-radius: 14px;
   --background: linear-gradient(135deg,#d4af37,#f0d27a);
   --color: #2b0f18;
+  background: linear-gradient(135deg,#d4af37,#f0d27a);
+  color: #2b0f18;  
   box-shadow: 0 6px 14px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 .save-button:active {

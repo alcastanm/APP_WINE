@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://milliary-polyphyletically-hertha.ngrok-free.dev",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

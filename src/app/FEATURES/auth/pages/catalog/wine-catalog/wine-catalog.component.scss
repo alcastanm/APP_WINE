@@ -1,197 +1,312 @@
-.catalog-container{
-
-  min-height:100vh;
-
-  padding:15px;
-
-  background:linear-gradient(
-      180deg,
-      #2b0f18 0%,
-      #5b1c2b 50%,
-      #8c2f39 100%
+.catalog-container {
+  --background: linear-gradient(
+    180deg,
+    #2b0f18 0%,
+    #5b1c2b 50%,
+    #8c2f39 100%
   );
-
+  padding: 15px;
+  display: block; /* importante: ion-content ya maneja scroll general */
 }
 
-/* BUSCADOR */
-
-.search-container{
-
-  margin-bottom:20px;
-
+/* Buscador */
+.search-container {
+  margin-bottom: 10px;
 }
 
-.search-container input{
+.search-container input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  outline: none;
+}
 
-  width:100%;
+/* Filtros */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
 
-  padding:12px 14px;
+.filters::-webkit-scrollbar {
+  display: none;
+}
 
-  border-radius:12px;
-
-  border:none;
-
-  font-size:14px;
-
-  outline:none;
-
+/* Contenedor scrollable para el grid */
+.wine-grid-container {
+  height: calc(100vh - 120px); /* ajusta según altura de buscador+filtros */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* scroll suave iOS */
 }
 
 /* GRID */
-
-.wine-grid{
-
-  display:grid;
-
-  grid-template-columns:repeat(2,1fr);
-
-  gap:15px;
-
+.wine-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 
-/* TARJETA */
-
-.wine-card{
-
-  background:rgba(255,255,255,0.08);
-
-  backdrop-filter:blur(8px);
-
-  border-radius:14px;
-
-  overflow:hidden;
-
-  cursor:pointer;
-
-  transition:transform 0.2s;
-
+/* Tarjetas de vino */
+.wine-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.wine-card:hover{
-
-  transform:scale(1.03);
-
+.wine-card:hover {
+  transform: scale(1.03);
 }
 
-/* IMAGEN */
-
-.wine-image{
-
-  width:100%;
-
-  height:150px;
-
-  object-fit:cover;
-
+.wine-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
-/* INFO */
-
-.wine-info{
-
-  padding:12px;
-
-  color:white;
-
+.wine-info {
+  padding: 12px;
+  color: white;
 }
 
-.wine-name{
-
-  font-weight:600;
-
-  font-size:14px;
-
+.wine-name {
+  font-weight: 600;
+  font-size: 14px;
 }
 
-.wine-region{
-
-  font-size:12px;
-
-  opacity:0.8;
-
-  margin-top:3px;
-
+.wine-region {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 3px;
 }
 
-.wine-rating{
-
-  font-size:13px;
-
-  margin-top:6px;
-
-  color:#ffd98a;
-
+.wine-rating {
+  font-size: 13px;
+  margin-top: 6px;
+  color: #ffd98a;
 }
 
-/* CONTENEDOR DE FILTROS */
-
-.filters{
-
-  display:flex;
-
-  gap:10px;
-
-  margin-bottom:18px;
-
-  overflow-x:auto;
-
-  padding-bottom:4px;
-
+/* Filtros individuales */
+.filter {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* OCULTAR SCROLL EN MOVIL */
+.filter:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
 
-.filters::-webkit-scrollbar{
-  display:none;
+.filter.active {
+  background: #ffd98a;
+  color: #2b0f18;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
 }
 
 
-/* FILTRO */
+// .catalog-container {
+//   display: flex;
+//   flex-direction: column;
+//   height: 100vh; /* toda la pantalla */
+//   padding: 15px;
+//   --background: linear-gradient(
+//     180deg,
+//     #2b0f18 0%,
+//     #5b1c2b 50%,
+//     #8c2f39 100%
+//   );
+// }
 
-.filter{
+// .search-container input {
+//   width: 100%;
+//   padding: 12px 14px;
+//   border-radius: 12px;
+//   border: none;
+//   font-size: 14px;
+//   outline: none;
+// }
 
-  padding:8px 16px;
+// .search-container {
+//   margin-bottom: 10px;
+// }
 
-  border-radius:20px;
+// .search-container input{
 
-  font-size:13px;
+//   width:100%;
 
-  color:white;
+//   padding:12px 14px;
 
-  background:rgba(255,255,255,0.12);
+//   border-radius:12px;
 
-  backdrop-filter:blur(6px);
+//   border:none;
 
-  white-space:nowrap;
+//   font-size:14px;
 
-  cursor:pointer;
+//   outline:none;
 
-  transition:all 0.2s ease;
+// }
 
-}
+// /* GRID */
+
+// .wine-grid {
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   gap: 15px;
+//   overflow-y: auto;       /* scroll vertical */
+//   -webkit-overflow-scrolling: touch; /* habilita momentum scroll en iOS */
+//   flex: 1;                /* ocupa el espacio restante */
+//   padding-bottom: 10px;
+// }
+
+// /* TARJETA */
+
+// .wine-card{
+
+//   background:rgba(255,255,255,0.08);
+
+//   backdrop-filter:blur(8px);
+
+//   border-radius:14px;
+
+//   overflow:hidden;
+
+//   cursor:pointer;
+
+//   transition:transform 0.2s;
+
+// }
+
+// .wine-card:hover{
+
+//   transform:scale(1.03);
+
+// }
+
+// /* IMAGEN */
+
+// .wine-image{
+
+//   width:100%;
+
+//   height:150px;
+
+//   object-fit:cover;
+
+// }
+
+// /* INFO */
+
+// .wine-info{
+
+//   padding:12px;
+
+//   color:white;
+
+// }
+
+// .wine-name{
+
+//   font-weight:600;
+
+//   font-size:14px;
+
+// }
+
+// .wine-region{
+
+//   font-size:12px;
+
+//   opacity:0.8;
+
+//   margin-top:3px;
+
+// }
+
+// .wine-rating{
+
+//   font-size:13px;
+
+//   margin-top:6px;
+
+//   color:#ffd98a;
+
+// }
+
+// /* CONTENEDOR DE FILTROS */
+
+// /* Filtros */
+// .filters {
+//   display: flex;
+//   gap: 10px;
+//   margin-bottom: 12px;
+//   overflow-x: auto;
+//   padding-bottom: 4px;
+// }
+
+// .filters::-webkit-scrollbar {
+//   display: none;
+// }
+
+// /* FILTRO */
+
+// .filter{
+
+//   padding:8px 16px;
+
+//   border-radius:20px;
+
+//   font-size:13px;
+
+//   color:white;
+
+//   background:rgba(255,255,255,0.12);
+
+//   backdrop-filter:blur(6px);
+
+//   white-space:nowrap;
+
+//   cursor:pointer;
+
+//   transition:all 0.2s ease;
+
+// }
 
 
-/* EFECTO HOVER */
+// /* EFECTO HOVER */
 
-.filter:hover{
+// .filter:hover{
 
-  background:rgba(255,255,255,0.25);
+//   background:rgba(255,255,255,0.25);
 
-  transform:scale(1.05);
+//   transform:scale(1.05);
 
-}
+// }
 
 
-/* FILTRO ACTIVO */
+// /* FILTRO ACTIVO */
 
-.filter.active{
+// .filter.active{
 
-  background:#ffd98a;
+//   background:#ffd98a;
 
-  color:#2b0f18;
+//   color:#2b0f18;
 
-  font-weight:600;
+//   font-weight:600;
 
-  box-shadow:0 3px 8px rgba(0,0,0,0.25);
+//   box-shadow:0 3px 8px rgba(0,0,0,0.25);
 
-}
+// }

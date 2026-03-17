@@ -31,8 +31,8 @@ export class HttpBaseService {
         this.uri_api_Python="https://192.168.1.8:8000"
         
       }
-      let x = (!pythonapi ? this.uri_api : this.uri_api_Python) + endPoint
 
+    this.uri_api_Python="http://192.168.1.8:8000"
     return (!pythonapi ? this.uri_api : this.uri_api_Python) + endPoint;
   }
 

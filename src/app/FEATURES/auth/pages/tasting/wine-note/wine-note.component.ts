@@ -3,10 +3,27 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Notes } from "../../../../../CORE/service/WINE/notes";
-import { ToastService } from "../../../../../CORE/service/toast";
+import { ToastService } from "../../../../../CORE/service/toastservice";
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ResultModel } from 'src/app/MODELS/result-Models';
-import { IonContent } from '@ionic/angular';
+import { NgZone } from '@angular/core';
+
+
+import {
+  IonContent,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonTextarea,
+  IonButton,
+  IonIcon
+} from '@ionic/angular/standalone';
+
+
 
 
 @Component({
@@ -14,7 +31,20 @@ import { IonContent } from '@ionic/angular';
   templateUrl: './wine-note.component.html',
   styleUrls: ['./wine-note.component.scss'],
   standalone:true,
-  imports: [IonicModule,CommonModule,FormsModule],
+  imports: [    CommonModule,
+    FormsModule,
+    IonContent,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonTextarea,
+    IonButton,
+    IonIcon,
+    IonicModule],
 })
 export class WineNoteComponent  implements OnInit {
 
@@ -31,12 +61,18 @@ export class WineNoteComponent  implements OnInit {
 
  @ViewChild('ioncontent', { static: false }) ioncontent!: IonContent;
 
-  constructor(private httpnotes:Notes,private toastService: ToastService) { }
+  constructor(private zone: NgZone,
+              private httpnotes:Notes,
+              private toastService: ToastService
+            ) { }
 
+      
+  stars = [1, 2, 3, 4, 5];
   ngOnInit() 
   {
     
   }
+
 
   onWineNameInput(event: any) {
     // Convierte a mayúsculas mientras se escribe
@@ -152,14 +188,23 @@ export class WineNoteComponent  implements OnInit {
 
     if(this.wineName=='')
       {
-        this.toastService.error("Ingrese nombre para el vino")
+
+          this.zone.run(() => {
+            this.toastService.error("Ingrese nombre para el vino");
+          });        
         return
       } 
     if(this.wineType=='')
       {
-        this.toastService.error("Tipo de vino? Blanco, Tinto o Rosé")
+        this.toastService.error("Tipo de vino? Blanco, Tinto o Rosé");
+        alert("tipo vino")
         return
-      }     
+      }    
+      
+      ///PAARA BORRAR DESPUES
+      formData.forEach((value, key) => {
+        console.log('📦', key, value);
+      });
 
     this.httpnotes.addNote(formData).subscribe
     (
@@ -210,4 +255,6 @@ export class WineNoteComponent  implements OnInit {
     this.ioncontent.scrollToTop(300);
   
   }  
+
+  
 }
