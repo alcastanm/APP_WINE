@@ -56,4 +56,14 @@ export class TabsComponent  implements OnInit {
       });
   }
 
+  goToCatalogo(){
+    this.router.navigate(['app/catalog']);
+  }
+
+  goToNotaCata(){
+      this.zone.run(() => {
+        this.router.navigate(['app/note']);
+      });
+  }    
+
 }

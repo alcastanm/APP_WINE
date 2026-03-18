@@ -21,18 +21,17 @@
   <div class="bottom-nav">
 
     <div class="nav-item" (click)="goToHome()">
-      
       <ion-icon name="home-outline" class="bottom-icon"></ion-icon>
-
     </div>
 
     <div class="nav-item">
-      <ion-icon name="search-outline" class="bottom-icon"></ion-icon>
+      <ion-icon name="wine-catalog" (click)="goToCatalogo()" class="bottom-icon"></ion-icon>
     </div>
 
     <div class="nav-item">
-      <img [src]="userPicture" class="nav-avatar">
-    </div>
+      <ion-icon name="wine-note" (click)="goToNotaCata()" class="bottom-icon"></ion-icon>
+    </div>    
+
 
   </div>
 

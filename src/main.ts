@@ -6,12 +6,14 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { addIcons } from 'ionicons';
-import { star, starOutline, camera, image,folder } from 'ionicons/icons';
+import { star, starOutline, camera, image,folder,libraryOutline,wineOutline   } from 'ionicons/icons';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 addIcons({
   star,
   'star-outline': starOutline,
+  'wine-catalog':libraryOutline ,
+  'wine-note':wineOutline,
   camera,
   image,
   folder 
