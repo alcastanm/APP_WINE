@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "600105232081",
+    "project_id": "wineapp-61367",
+    "storage_bucket": "wineapp-61367.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600105232081:android:ab1600f62c0676beaac7f0",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600105232081-f2hg6tefij9dmqbpk0b3reqireq3pniv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app",
+            "certificate_hash": "5df97560ec437edb347c959550b8c30efda8c009"
+          }
+        },
+        {
+          "client_id": "600105232081-69d49eheefcseqgth4mpu5kjev3i9k2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHPuKxrOxknIiIuXg-ky7Qek_QMyC5xJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600105232081-69d49eheefcseqgth4mpu5kjev3i9k2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
