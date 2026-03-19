@@ -1,3 +1,17 @@
+  <div *ngIf="isLoading" class="overlay">
+    <ng-container *ngIf="lottieOk; else fallback">
+      <ng-lottie 
+        [options]="options">
+      </ng-lottie>
+    </ng-container>
+
+    <ng-template #fallback>
+      <ion-spinner name="crescent"></ion-spinner>
+    </ng-template>
+    <p>Cargando...</p>
+  </div>
+
+
 <ion-content class="wine-page" fullscreen #ioncontent     [scrollEvents]="true"
     keyboardResize="ionic">
 
@@ -160,7 +174,7 @@
       <ion-textarea
         auto-grow="true"
         placeholder="Describe aromas, sensaciones, recuerdos, etc..."
-        [(ngModel)]="notes">
+        [(ngModel)]="notes" style="color:white">
       </ion-textarea>
     </ion-card-content>
   </ion-card>

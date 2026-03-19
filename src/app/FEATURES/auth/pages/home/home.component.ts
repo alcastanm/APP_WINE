@@ -2,6 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,14 @@ export class HomeComponent  implements OnInit {
   userName = '';
   userPicture = '';
   constructor(private router: Router,
-              private zone: NgZone) { }
+              private zone: NgZone,
+              private loadingCtrl: LoadingController) { }
 
   ngOnInit() 
   {
-    
-  }
 
+  }
+  
   goToCatalogo(){
     this.router.navigate(['app/catalog']);
   }

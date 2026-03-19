@@ -7,7 +7,9 @@ import { ToastService } from "../../../../../CORE/service/toastservice";
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ResultModel } from 'src/app/MODELS/result-Models';
 import { NgZone } from '@angular/core';
-
+import { AnimationOptions,LottieComponent  } from 'ngx-lottie';
+import bottleAnimation from '../../../../../../assets/animations/bottle.json';
+import { Keyboard } from '@capacitor/keyboard';
 
 import {
   IonContent,
@@ -44,7 +46,8 @@ import {
     IonTextarea,
     IonButton,
     IonIcon,
-    IonicModule],
+    IonicModule,
+    LottieComponent],
 })
 export class WineNoteComponent  implements OnInit {
 
@@ -61,10 +64,21 @@ export class WineNoteComponent  implements OnInit {
 
  @ViewChild('ioncontent', { static: false }) ioncontent!: IonContent;
 
+  isLoading = false;
+  lottieOk = true;
   constructor(private zone: NgZone,
               private httpnotes:Notes,
               private toastService: ToastService
-            ) { }
+            ) {
+                  
+              }
+
+
+    options: AnimationOptions = {
+    animationData: bottleAnimation,
+    loop: true,
+    autoplay: true
+  };            
 
       
   stars = [1, 2, 3, 4, 5];
@@ -151,6 +165,7 @@ export class WineNoteComponent  implements OnInit {
 
 
   saveWineNote() {
+    this.isLoading=true
     const userString = localStorage.getItem("user");
     let email = ''
     if (userString) {
@@ -188,28 +203,26 @@ export class WineNoteComponent  implements OnInit {
 
     if(this.wineName=='')
       {
+          this.isLoading=false
 
           this.zone.run(() => {
             this.toastService.error("Ingrese nombre para el vino");
-          });        
+          }); 
+    
         return
       } 
     if(this.wineType=='')
       {
+        this.isLoading=false
         this.toastService.error("Tipo de vino? Blanco, Tinto o Rosé");
-        alert("tipo vino")
         return
       }    
       
-      ///PAARA BORRAR DESPUES
-      formData.forEach((value, key) => {
-        console.log('📦', key, value);
-      });
-
     this.httpnotes.addNote(formData).subscribe
     (
       (res:ResultModel)=>
         {
+          this.isLoading=false
           if(res.isSuccess)
             {
               this.toastService.success("Nota agregada")

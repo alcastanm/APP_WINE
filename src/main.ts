@@ -8,6 +8,8 @@ import { AppComponent } from './app/app.component';
 import { addIcons } from 'ionicons';
 import { star, starOutline, camera, image,folder,libraryOutline,wineOutline   } from 'ionicons/icons';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
 
 addIcons({
   star,
@@ -25,6 +27,9 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(withInterceptors([authInterceptor])),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideLottieOptions({
+      player: () => player
+    })    
   ],
 });

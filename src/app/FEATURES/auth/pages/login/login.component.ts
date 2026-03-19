@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,9 @@ import { ToastService } from "../../../../CORE/service/toast";
 import { Social } from "../../../../CORE/service/AUTHORIZATION/social";
 import { SocialMicrosoft } from '../../../../CORE/service/AUTHORIZATION/social-microsoft';
 import { ResultModel } from 'src/app/MODELS/result-Models';
-import { PluginResult } from '@capacitor/core/types/definitions-internal';
+import { AnimationOptions,LottieComponent  } from 'ngx-lottie';
+import bottleAnimation from '../../../../../assets/animations/bottle.json';
+
 
 declare global {
   interface Window {
@@ -19,7 +21,7 @@ declare global {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [IonicModule, CommonModule],
+  imports: [IonicModule, CommonModule,LottieComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -28,14 +30,22 @@ export class LoginComponent implements OnInit {
   // === Configuración de clientes ===
   webClientGoogle = "813595942451-rljrc5fiefhkvrbrru0f14uqfebokcl0.apps.googleusercontent.com";
   isWeb: boolean = false;
-
+  isLoading = false;
+  lottieOk = true;
+  
   constructor(
     private httpAuth: Social,
     private httpSocMicrosoft: SocialMicrosoft,
     private router: Router,
     private zone: NgZone,
-    private toastService: ToastService
-  ) {}
+    private toastService: ToastService ) {}
+
+    options: AnimationOptions = {
+    animationData: bottleAnimation,
+    loop: true,
+    autoplay: true
+  };     
+
 
   async ngOnInit() {
     // Detectamos plataforma
@@ -71,12 +81,10 @@ export class LoginComponent implements OnInit {
         this.toastService.error("Error en la autienticacion")
         return;
       }
-
       const params = { provider: "google", token: user.authentication.idToken };
       this.getAppToken(params);
     } catch (error) {
       this.toastService.error("ERROR Google Login (Mobile):")
-
     }
   }
 
@@ -120,10 +128,13 @@ export class LoginComponent implements OnInit {
 
   getAppToken(params: any)
   {
+    this.isLoading=true
     this.httpAuth.loginGoogle(params).subscribe
     (
       (res:ResultModel)=>
         {
+          this.isLoading=false
+          this.isLoading=false
           if(res.isSuccess)
             {
               const jwt = res.data.access_token;
