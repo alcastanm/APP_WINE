@@ -11,9 +11,8 @@
 
 
 
-  <div class="content"
-      [@routeAnimation]="o.isActivated ? o.activatedRoute : ''">
-
+  <!-- <div class="content"  [@routeAnimation]="o.isActivated ? o.activatedRoute : ''"> -->
+  <div class="content">
     <router-outlet #o="outlet"></router-outlet>
 
   </div>  
@@ -22,14 +21,17 @@
 
     <div class="nav-item" (click)="goToHome()">
       <ion-icon name="home-outline" class="bottom-icon"></ion-icon>
+      Home
     </div>
 
     <div class="nav-item">
       <ion-icon name="wine-catalog" (click)="goToCatalogo()" class="bottom-icon"></ion-icon>
+      Catalogo
     </div>
 
     <div class="nav-item">
       <ion-icon name="wine-note" (click)="goToNotaCata()" class="bottom-icon"></ion-icon>
+      Notas
     </div>    
 
 

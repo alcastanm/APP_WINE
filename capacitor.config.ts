@@ -6,7 +6,14 @@ const config: CapacitorConfig = {
   webDir: 'www',
   server: {
     androidScheme: 'http'
-  }  
+  },
+
+  plugins: {
+    Keyboard: {
+      resize: 'body' as any,
+      resizeOnFullScreen: true
+    }
+  } as any
 };
 
 export default config;

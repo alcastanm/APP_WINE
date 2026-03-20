@@ -5,6 +5,9 @@ import { IonicModule } from '@ionic/angular';
 import { routeAnimation } from "../../../ANIMATIONS/route-animation";
 import { addIcons } from 'ionicons';
 import { homeOutline, searchOutline } from 'ionicons/icons';
+import { Platform } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-tabs',
@@ -23,8 +26,10 @@ export class TabsComponent  implements OnInit {
 
   userName = '';
   userPicture = '';
+  private backSub!: Subscription;
 
   constructor(private router: Router,
+              private platform: Platform,
               private zone: NgZone) 
               { 
                 addIcons({
@@ -36,6 +41,14 @@ export class TabsComponent  implements OnInit {
 
   ngOnInit() 
   {
+
+    this.backSub = this.platform.backButton.subscribeWithPriority(10, () => {
+      
+      // 🔥 navegación personalizada
+      this.router.navigate(['app/home']);
+
+    });
+
     const user = localStorage.getItem("user");
 
     if(user){
@@ -47,6 +60,10 @@ export class TabsComponent  implements OnInit {
     }
 
   }
+
+  ngOnDestroy() {
+    this.backSub?.unsubscribe();
+  }  
 
 
   goToHome()

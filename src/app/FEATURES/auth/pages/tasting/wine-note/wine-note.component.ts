@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -51,6 +51,15 @@ import {
 })
 export class WineNoteComponent  implements OnInit {
 
+  @ViewChildren('focusable', { read: ElementRef }) focusables!: QueryList<ElementRef>;
+  @ViewChild('ioncontent', { static: false }) content!: IonContent;
+
+  focusInput(index: number) {
+    setTimeout(() => {
+      const el = this.focusables.toArray()[index].nativeElement;
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300); // espera a que aparezca el teclado
+  } 
   photo: string = "";
   colorRating = 0;
   aromaRating = 0;
@@ -62,10 +71,11 @@ export class WineNoteComponent  implements OnInit {
   wineType=""
   wineName=""
 
- @ViewChild('ioncontent', { static: false }) ioncontent!: IonContent;
-
+ 
   isLoading = false;
   lottieOk = true;
+
+   private focusHandler: any;
   constructor(private zone: NgZone,
               private httpnotes:Notes,
               private toastService: ToastService
@@ -82,10 +92,56 @@ export class WineNoteComponent  implements OnInit {
 
       
   stars = [1, 2, 3, 4, 5];
-  ngOnInit() 
-  {
-    
+
+  
+ngOnInit() {}
+
+ngAfterViewInit() {
+
+  // 🔥 Listener global de focus
+  this.focusHandler = (event: any) => {
+    const target = event.target;
+    const tag = target.tagName;
+
+    if (tag === 'ION-INPUT' || tag === 'ION-TEXTAREA') {
+
+      setTimeout(async () => {
+
+        const y = await this.getElementY(target);
+
+        const offset = 140; // 👈 subí un poco para evitar footer
+
+        this.content.scrollToPoint(0, y - offset, 300);
+
+      }, 350); // 👈 más tiempo = teclado ya abierto
+    }
+  };
+
+  document.addEventListener('focusin', this.focusHandler);
+
+  // 🔥 💣 ESTE ES EL FIX DEL PRIMER FOCUS
+  Keyboard.addListener('keyboardWillShow', () => {
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 0);
+  });
+
+}
+
+  async getElementY(el: any): Promise<number> {
+    const rect = el.getBoundingClientRect();
+
+    const scrollEl = await this.content.getScrollElement();
+
+    return rect.top + scrollEl.scrollTop;
   }
+
+  ngOnDestroy() {
+    document.removeEventListener('focusin', this.focusHandler);
+  }    
+
+
+
 
 
   onWineNameInput(event: any) {
@@ -265,7 +321,7 @@ export class WineNoteComponent  implements OnInit {
     this.finalRating=0
     this.notes=''
     this.photo=''
-    this.ioncontent.scrollToTop(300);
+    this.content.scrollToTop(300);
   
   }  
 
