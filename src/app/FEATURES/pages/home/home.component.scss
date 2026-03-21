@@ -1,0 +1,97 @@
+.home-page
+{
+  --background: none;
+  height: 100vh;
+  background: url('/assets/wineportada.png');
+  background-size: cover;
+  display:flex;
+  justify-items: center;
+  padding-top: 0;
+}
+
+/* Contenido visible encima de todo */
+.container {
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+  color: white;
+  backdrop-filter: blur(9px);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+/* Texto de bienvenida */
+.welcome {
+  color: #E0E0E0;
+  font-size: 14px;
+  margin: 10px 0 30px;
+}
+
+/* Grid de tarjetas */
+.grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* Tarjetas */
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 18px;
+  text-align: center;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  transition: all 0.35s ease;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.card span {
+  font-size: 30px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.card p {
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(123, 30, 58, 0.35);
+  box-shadow:
+    0 0 25px rgba(123, 30, 58, 0.6),
+    0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Avatar */
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: solid 1px white;
+}
+
+.homeicon
+{
+  height: 65px;
+  width:  65px;
+}

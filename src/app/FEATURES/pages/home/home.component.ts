@@ -21,6 +21,18 @@ export class HomeComponent  implements OnInit {
 
   ngOnInit() 
   {
+    setTimeout(() => {
+      const user = localStorage.getItem("user");
+
+      if(user){
+
+        const data = JSON.parse(user);
+
+        this.userName = data.name.split(' ')[0].toUpperCase();
+         
+        this.userPicture = data.picture;
+      }
+    }, 100);
 
   }
   

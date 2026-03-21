@@ -1,0 +1,249 @@
+/* 🔥 FIX REAL PARA ANDROID */
+ion-content {
+  flex: 1;
+  --background: #2b0f18;
+
+  /* 👇 ESTE ES EL IMPORTANTE */
+  --padding-top: calc(var(--ion-safe-area-top) + 16px);
+}
+
+/* ========================= */
+
+ion-content::part(scroll) {
+  padding-top: 0; /* ❌ ya no usar env() */
+}
+
+/* ========================= */
+
+.rating-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0;
+  font-size: 16px;
+}
+
+.rating-row span {
+  color: rgb(232, 232, 232) !important
+}
+
+.stars ion-icon {
+  font-size: 24px;
+  color: #d4af37 !important;
+}
+
+/* ========================= */
+
+.wine-type-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.wine-type {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  text-align: center;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  transition: all 0.35s ease;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.05);
+
+  flex: 1;
+  padding: 12px;
+}
+
+.wine-type .emoji {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.wine-type.selected {
+  background: #d3b85e;
+  color: #5b1c2b;
+  border-color: #5b1c2b;
+}
+
+/* ========================= */
+
+ion-item {
+  border-radius: 8px;
+}
+
+ion-card-title {
+  color: #d4af37
+}
+
+/* ========================= */
+
+ion-input,
+ion-textarea {
+  --color: #5b1c2b;
+  color: #5b1c2b;
+}
+
+ion-input {
+  width: 100%;
+  display: block;
+}
+
+/* ========================= */
+
+.wine-page {
+  --background: none;
+  background: url('/assets/wineportada.png');
+  background-size: cover;
+  justify-items: center;
+}
+
+/* 🔥 IMPORTANTE: quitamos padding-top de aquí */
+.wrap {
+  position: relative;
+  z-index: 2;
+  color: white;
+  backdrop-filter: blur(9px);
+
+  min-height: auto;
+  --padding-bottom: 20px;
+}
+
+/* ========================= */
+
+.photo-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 20px auto;
+}
+
+.photo-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+
+  background: #2b0f18;
+
+  border: 2px solid rgba(212, 175, 55, 0.3);
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.3s ease;
+}
+
+.photo-circle:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.7),
+    inset 0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+.wine-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================= */
+
+ion-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+/* ========================= */
+
+.save-button {
+  margin: 20px 10px 0px 10px;
+  height: 54px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 14px;
+
+  --background: linear-gradient(135deg, #d4af37, #f0d27a);
+  --color: #2b0f18;
+
+  background: linear-gradient(135deg, #d4af37, #f0d27a);
+  color: #2b0f18;
+
+  box-shadow: 
+    0 6px 14px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.save-button:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* ========================= */
+
+/* 🔥 FIX OVERLAY ANDROID */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* 👈 mejor que height:100vh */
+
+  z-index: 999999;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.overlay p {
+  color: white
+}
+
+ng-lottie {
+  width: 200px;
+  height: 200px;
+}
+
+/* ========================= */
+
+.camera-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  font-size: 18px;
+  background: linear-gradient(135deg, #d4af37, #f0d27a);
+  border-radius: 50%;
+  padding: 8px;
+  color: #2b0f18;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+  transition: transform 0.2s ease;
+}
+
+.camera-button:active {
+  transform: scale(0.9);
+}

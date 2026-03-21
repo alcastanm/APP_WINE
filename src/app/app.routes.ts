@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './FEATURES/auth/pages/home/home.component';
-import { WineNoteComponent } from './FEATURES/auth/pages/tasting/wine-note/wine-note.component';
-import { WineCatalogComponent } from './FEATURES/auth/pages/catalog/wine-catalog/wine-catalog.component';
+import { HomeComponent } from './FEATURES/pages/home/home.component';
+import { WineNoteComponent } from './FEATURES/pages/tasting/wine-note/wine-note.component';
+import { WineCatalogComponent } from './FEATURES/pages/catalog/wine-catalog/wine-catalog.component';
 
 
 export const routes: Routes = [
@@ -15,7 +15,7 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./FEATURES/auth/pages/login/login.component')
+      import('./FEATURES/pages/login/login.component')
       .then(m => m.LoginComponent)
   },
 
@@ -30,21 +30,21 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./FEATURES/auth/pages/home/home.component')
+          import('./FEATURES/pages/home/home.component')
             .then(m => m.HomeComponent)
       },
 
       {
         path: 'note',
         loadComponent: () =>
-          import('./FEATURES/auth/pages/tasting/wine-note/wine-note.component')
+          import('./FEATURES/pages/tasting/wine-note/wine-note.component')
             .then(m => m.WineNoteComponent)
       },
 
       {
         path: 'catalog',
         loadComponent: () =>
-          import('./FEATURES/auth/pages/catalog/wine-catalog/wine-catalog.component')
+          import('./FEATURES/pages/catalog/wine-catalog/wine-catalog.component')
             .then(m => m.WineCatalogComponent)
       },
 

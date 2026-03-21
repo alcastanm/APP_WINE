@@ -1,4 +1,37 @@
-<div *ngIf="isLoading" class="overlay">
+<ion-content class="login-page">
+
+  <div class="container">
+    
+    <div class="logo">
+      🍷
+      <h1>WineApp</h1>
+      <p>Descubre tu vino ideal</p>
+    </div>
+
+    <div class="buttons">
+      
+      <button class="btn google" (click)="onGoogleLogin()">
+        <img src="https://developers.google.com/identity/images/g-logo.png" />
+        Continuar con Google
+      </button>
+
+      <button class="btn microsoft">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" />
+        Continuar con Microsoft
+      </button>
+
+    </div>
+
+    Terminos y privacidad
+
+  </div>
+
+</ion-content>
+
+
+
+
+<!-- <div *ngIf="isLoading" class="overlay">
   <ng-container *ngIf="lottieOk; else fallback">
     <ng-lottie 
       [options]="options">
@@ -40,4 +73,4 @@
 
   </div>
 
-</ion-content>
+</ion-content> -->

@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Capacitor } from '@capacitor/core';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
-import { ToastService } from "../../../../CORE/service/toast";
-import { Social } from "../../../../CORE/service/AUTHORIZATION/social";
-import { SocialMicrosoft } from '../../../../CORE/service/AUTHORIZATION/social-microsoft';
+import { ToastService } from "../../../CORE/service/toast";
+import { Social } from "../../../CORE/service/AUTHORIZATION/social";
+import { SocialMicrosoft } from '../../../CORE/service/AUTHORIZATION/social-microsoft';
 import { ResultModel } from 'src/app/MODELS/result-Models';
 import { AnimationOptions,LottieComponent  } from 'ngx-lottie';
-import bottleAnimation from '../../../../../assets/animations/bottle.json';
+import bottleAnimation from '../../../../assets/animations/bottle.json';
 
 
 declare global {

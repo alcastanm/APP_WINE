@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from "../../../../../../environments/environment";
-import { Notes } from "../../../../../CORE/service/WINE/notes";
+import { environment } from "../../../../../environments/environment";
+import { Notes } from "../../../../CORE/service/WINE/notes";
 import { ResultModel } from 'src/app/MODELS/result-Models';
 import { CommonModule } from '@angular/common';
-import { ToastService } from "../../../../../CORE/service/toast";
+import { ToastService } from "../../../../CORE/service/toast";
 import { IonicModule } from '@ionic/angular';
 
 @Component({

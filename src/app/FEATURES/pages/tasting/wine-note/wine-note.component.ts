@@ -2,14 +2,16 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Notes } from "../../../../../CORE/service/WINE/notes";
-import { ToastService } from "../../../../../CORE/service/toastservice";
+import { Notes } from "../../../../CORE/service/WINE/notes";
+import { ToastService } from "../../../../CORE/service/toastservice";
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ResultModel } from 'src/app/MODELS/result-Models';
 import { NgZone } from '@angular/core';
 import { AnimationOptions,LottieComponent  } from 'ngx-lottie';
-import bottleAnimation from '../../../../../../assets/animations/bottle.json';
+import bottleAnimation from '../../../../../assets/animations/bottle.json';
 import { Keyboard } from '@capacitor/keyboard';
+import { StatusBar } from '@capacitor/status-bar';
+StatusBar.setOverlaysWebView({ overlay: false });
 
 import {
   IonContent,

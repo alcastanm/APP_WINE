@@ -1,0 +1,38 @@
+<ion-content class="home-page">
+
+  <div class="container">
+
+    <div class="header">
+      <h2>🍷 WineApp</h2>
+       <img [src]="userPicture" class="avatar">
+    </div>
+    Bienvenido:&nbsp;&nbsp;{{userName}}
+    <p class="welcome">Descubre tu próxima experiencia</p>
+
+    <div class="grid">
+
+      <div class="card" (click)="goToCatalogo()">
+        <img src='/assets/racimo.png' class="homeicon">
+        <p>Catálogo</p>
+      </div>
+
+      <div class="card" (click)="goToNotaCata()">
+         <img src='/assets/nota.png' >
+        <p>Notas de cata</p>
+      </div>      
+
+      <div class="card">
+        <img src='/assets/regiones.png' >
+        <p>Regiones</p>
+      </div>
+
+      <div class="card">
+        <img src='/assets/favoritos.png' >
+        <p>Favoritos</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>
