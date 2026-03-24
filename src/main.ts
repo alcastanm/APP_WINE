@@ -10,6 +10,8 @@ import { star, starOutline, camera, image,folder,libraryOutline,wineOutline   } 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
+import { isDevMode } from '@angular/core';
+import { provideServiceWorker } from '@angular/service-worker';
 
 addIcons({
   star,
@@ -30,6 +32,12 @@ bootstrapApplication(AppComponent, {
     provideAnimationsAsync(),
     provideLottieOptions({
       player: () => player
-    })    
+    }), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          })    
   ],
 });
