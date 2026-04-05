@@ -24,15 +24,15 @@ export class HttpBaseService {
 
   private getUri(pythonapi:boolean,endPoint:string)
   {
-    if (this.uri_api_Python === 'https://localhost:8100') {
-      this.uri_api_Python = 'https://127.0.0.1:8000';
-    } else
-      {
-        this.uri_api_Python="https://192.168.1.8:8000"
+    // if (this.uri_api_Python === 'https://localhost:8100') {
+    //   this.uri_api_Python = 'https://127.0.0.1:8000';
+    // } else
+    //   {
+    //     this.uri_api_Python="https://192.168.1.8:8000"
         
-      }
+    //   }
 
-    this.uri_api_Python="http://192.168.1.8:8000"
+    // this.uri_api_Python="https://192.168.1.8:8000"
     return (!pythonapi ? this.uri_api : this.uri_api_Python) + endPoint;
   }
 

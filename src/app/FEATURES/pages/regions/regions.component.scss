@@ -1,0 +1,72 @@
+/* CONTENEDOR BASE 🔥 */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* MAPA COMO FONDO */
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* 🔥 importante */
+}
+
+/* HEADER ESTILO VINO */
+.header-vino {
+  --background: linear-gradient(90deg, #7b1e3a, #a8324a);
+  color: white;
+}
+
+/* ASEGURA QUE HEADER QUEDE ENCIMA */
+ion-header {
+  position: relative;
+  z-index: 2000;
+}
+
+/* SELECT EN EL HEADER */
+ion-title {
+  display: flex;
+  justify-content: center;
+}
+
+ion-title ion-select {
+  width: 100%;
+  max-width: 250px;
+  color: white;
+
+  --placeholder-color: rgba(255,255,255,0.7);
+}
+
+/* CARD FLOTANTE */
+.bottom-card {
+  bottom: 20px;
+  left: 16px;
+  right: 16px;
+
+  position: absolute; /* Ionic lo respeta con slot=fixed */
+
+  z-index: 1500;
+
+  border-radius: 20px;
+  margin: 0;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+// :host {
+//   display: block;
+//   height: 100%;
+// }
+
+// ion-content {
+//   --padding-start: 0;
+//   --padding-end: 0;
+// }
+
+// div {
+//   height: 100%;
+// }

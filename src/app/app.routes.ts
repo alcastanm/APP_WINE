@@ -47,15 +47,19 @@ export const routes: Routes = [
           import('./FEATURES/pages/catalog/wine-catalog/wine-catalog.component')
             .then(m => m.WineCatalogComponent)
       },
-
       {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'
       }
-
     ]
-  }
+  },
+  {
+    path: 'regions',
+    loadComponent: () =>
+      import('./FEATURES/pages/regions/regions.component')
+        .then(m => m.RegionsComponent)
+  },     
 
 ];
 

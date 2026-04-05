@@ -1,19 +1,36 @@
+<div *ngIf="isLoading" class="overlay">
+  <ng-container *ngIf="lottieOk; else fallback">
+    <ng-lottie [options]="options">
+    </ng-lottie>
+  </ng-container>
+
+  <ng-template #fallback>
+    <ion-spinner name="crescent"></ion-spinner>
+  </ng-template>
+  <p>Cargando...</p>
+</div>
+
+
 <ion-content class="login-page">
 
   <div class="container">
     
     <div class="logo">
-      <!-- <img src="/assets/logoApp.png"> -->
       <h1>Cheers</h1>
       <p>Disfruta tu experiencia</p>
     </div>
 
     <div class="buttons">
+
+    <button class="btn google" (click)="onGoogleLogin()">
+      <img src="https://developers.google.com/identity/images/g-logo.png" />
+      Continuar con Google
+    </button>
       
-      <button class="btn google" (click)="onGoogleLogin()">
+      <!-- <button class="btn google" (click)="onGoogleLogin()">
         <img src="https://developers.google.com/identity/images/g-logo.png" />
-        Continuar con Google
-      </button>
+        Continuar con Googlexx
+      </button> -->
 
       <button class="btn microsoft">
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" />
@@ -28,49 +45,3 @@
 
 </ion-content>
 
-
-
-
-<!-- <div *ngIf="isLoading" class="overlay">
-  <ng-container *ngIf="lottieOk; else fallback">
-    <ng-lottie 
-      [options]="options">
-    </ng-lottie>
-  </ng-container>
-
-  <ng-template #fallback>
-    <ion-spinner name="crescent"></ion-spinner>
-  </ng-template>
-  <p>Cargando...</p>
-</div>
-
-<ion-content class="login-page">
-
-  <div class="login-container">
-
-    <div class="logo">
-      🍷
-    </div>
-
-
-    <p class="subtitle">
-      Discover and record your wine experiences
-    </p>
-
-        <button (click)="onGoogleLogin()" class="google-btn">
-      <img src="https://developers.google.com/identity/images/g-logo.png" class="google-icon">
-      Continue with Google
-    </button>
-
-    
-    <div class="microsoft-login-btn" (click)="loginMicrosoft()">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" class="ms-icon">
-      <span>Continue with Microsoft</span>
-    </div>
-
-    
-    <div id="googleBtn" style="margin-top:12px;" *ngIf="isWeb"></div>
-
-  </div>
-
-</ion-content> -->

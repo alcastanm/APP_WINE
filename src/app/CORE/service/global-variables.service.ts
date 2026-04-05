@@ -8,6 +8,7 @@ export class GlobalVariablesService {
   public nomusu!:string;
   public image!:string;
   public _endPoints:string[]
+  public note_id:number=0
 
   
 

@@ -24,6 +24,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 0;
     h2
     {
       font-family: 'Fredoka', sans-serif;
@@ -104,4 +105,55 @@
 {
   height: 65px;
   width:  65px;
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.logout-menu {
+  position: absolute;
+  top: 52px;
+  right: 0;
+}
+
+/* BOTÓN PRO */
+.logout-menu {
+  position: absolute;
+  top: 65px;
+  right: 0;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeSlideIn 0.3s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* BOTÓN (igual que antes) */
+.logout-btn {
+  background: #666 ;
+  color: black;
+  border: none;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 400;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+
+.logout-btn:active {
+  transform: scale(0.96);
 }

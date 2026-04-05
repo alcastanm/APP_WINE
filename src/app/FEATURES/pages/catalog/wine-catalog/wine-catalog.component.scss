@@ -143,3 +143,32 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
+
+/* 🔥 FIX OVERLAY ANDROID */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* 👈 mejor que height:100vh */
+
+  z-index: 999999;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.overlay p {
+  color: white
+}
+
+ng-lottie {
+  width: 200px;
+  height: 200px;
+}
+
+/* ========================= */

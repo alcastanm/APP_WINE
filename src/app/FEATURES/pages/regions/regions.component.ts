@@ -1,0 +1,137 @@
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import * as L from 'leaflet';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { ChangeDetectorRef } from '@angular/core';
+import { environment } from "../../../../environments/environment.prod";
+
+@Component({
+  selector: 'app-regions',
+  templateUrl: './regions.component.html',
+  styleUrls: ['./regions.component.scss'],
+  standalone: true,
+  imports: [CommonModule, IonicModule],
+})
+export class RegionsComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('mapContainer') mapContainer!: ElementRef;
+
+  regiones: any = [];
+  map!: L.Map;
+  marker!: L.Marker;
+  regionSeleccionada: any;
+
+  regionLayer!: L.GeoJSON;
+  bodegasMarkers: L.Marker[] = [];
+
+  geojsonroute = environment.geojsonRoute
+
+  constructor(private cdr: ChangeDetectorRef) { }
+
+  ngOnInit(): void {
+    this.regiones = [
+      {
+        nombre: 'Valle del Limarí',
+        // coords: [-30.6, -71.2],
+        descripcion: 'Región vitivinícola en Chile',
+
+        geojson: `${this.geojsonroute}chile/limarí.geojson`,
+
+        bodegas: [
+          { nombre: 'Bodega Villa Señor', lat: -30.55, lng: -71.05 },
+          { nombre: 'Viña Concha y Toro', lat: -30.60, lng: -71.00 },
+          { nombre: 'Bodega Tabalí', lat: -30.58, lng: -71.02 }
+        ]
+      }
+    ];
+  }
+
+  ngAfterViewInit(): void {
+    this.map = L.map(this.mapContainer.nativeElement, {
+      center: [-30.6, -71.2],
+      zoom: 8
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'OpenStreetMap'
+    }).addTo(this.map);
+
+    setTimeout(() => {
+      this.map.invalidateSize();
+    }, 1000);
+
+    const regionInicial = this.regiones[0];
+    this.regionSeleccionada = regionInicial;
+    this.actualizarMapa(regionInicial);
+  }
+
+  actualizarMapa(region: any): void {
+    if (!this.map) return;
+
+    // 🔥 LIMPIEZA
+    if (this.marker) this.map.removeLayer(this.marker);
+    if (this.regionLayer) this.map.removeLayer(this.regionLayer);
+
+    this.bodegasMarkers.forEach(m => this.map.removeLayer(m));
+    this.bodegasMarkers = [];
+
+    // 🔥 CENTRAR
+    // this.map.setView(region.coords, 10);
+
+    // 🔥 POLÍGONO REAL (ORGÁNICO)
+    fetch(region.geojson)
+      .then(res => res.json())
+      .then(data => {
+
+        this.regionLayer = L.geoJSON(data, {
+          style: {
+            color: '#ff8c00',
+            weight: 2,
+            fillColor: '#ffa500',
+            fillOpacity: 0.45
+          }
+        }).addTo(this.map);
+
+        this.map.fitBounds(this.regionLayer.getBounds());
+
+        // 🔥 ICONO
+        const grapeIcon = L.divIcon({
+          html: `...`,
+          className: '',
+          iconSize: [40, 40],
+          iconAnchor: [20, 40]
+        });
+
+        // 🔥 BODEGAS (AHORA SÍ)
+        region.bodegas.forEach((bodega: any) => {
+
+          const marker = L.marker([bodega.lat, bodega.lng], {
+            icon: grapeIcon
+          }).addTo(this.map);
+
+          marker.bindTooltip(bodega.nombre, {
+            permanent: true,
+            direction: 'top',
+            offset: [0, -30],
+            className: 'custom-tooltip'
+          });
+
+          this.bodegasMarkers.push(marker);
+        });
+
+      });
+  }
+
+  onRegionChange(event: any): void {
+    const region = event.detail.value;
+
+    this.regionSeleccionada = region;
+
+    this.actualizarMapa(region);
+
+    this.cdr.detectChanges();
+  }
+}
+
+
+

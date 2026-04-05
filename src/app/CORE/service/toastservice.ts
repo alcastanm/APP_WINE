@@ -1,35 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Toast } from '@capacitor/toast';
+import { ToastController } from '@ionic/angular/standalone';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastService {
 
-  constructor() {}
+  constructor(private toastCtrl: ToastController) {}
 
-  // Mostrar mensaje de éxito
   async success(message: string) {
-    await Toast.show({
-      text: `✅ ${message}`,
-      duration: 'long'
-    });
+    await this.showToast(message, 'success');
   }
 
-  // Mostrar mensaje de error
   async error(message: string) {
-    await Toast.show({
-      text: `❌ ${message}`,
-      duration: 'long'
-    });
+    await this.showToast(message, 'danger');
   }
 
-  // Mensaje informativo (opcional)
-  async info(message: string) {
-    await Toast.show({
-      text: `ℹ️ ${message}`,
-      duration: 'long'
-    });
+  async warning(message: string) {
+    await this.showToast(message, 'warning');
   }
+
+  async info(message: string) {
+    await this.showToast(message, 'primary');
+  }
+
+  private async showToast(message: string, color: string) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2500,
+      position: 'bottom',
+      color, // 👈 clave para diferenciar
+      buttons: [
+        {
+          text: '✕',
+          role: 'cancel'
+        }
+      ]
+    });
+
+    await toast.present();
+  }  
 
 }

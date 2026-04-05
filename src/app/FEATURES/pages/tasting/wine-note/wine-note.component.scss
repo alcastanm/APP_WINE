@@ -244,3 +244,7 @@ ng-lottie {
 .camera-button:active {
   transform: scale(0.9);
 }
+
+ion-toast {
+  z-index: 99999 !important;
+}

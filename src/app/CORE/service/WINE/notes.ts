@@ -20,23 +20,20 @@ export class Notes {
     return this.http.post('/wine',formdata,true);
   }  
 
+  public updateNote(formdata:FormData ):Observable<ResultModel>
+  {
+    return this.http.post('/Updatewine',formdata,true);
+  }
+
   public getWineList(params:any):Observable<ResultModel>
   {
     return this.http.get('/wines',params,true);
   }  
 
-  // private uri_api_Python = "https://milliary-polyphyletically-hertha.ngrok-free.dev";
-  
-  // public getWineList(params: any): Observable<ResultModel> {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json; charset=utf-8'
-  //   });
+  public getnote(params:any):Observable<ResultModel>
+  {
+    return this.http.get('/getNote',params,true);
+  }   
 
-  //   // Usamos responseType 'text' y luego parseamos manualmente para evitar errores de parsing en WebView
-  //   return this.http.get(this.uri_api_Python + '/wines', { params, headers, responseType: 'text' })
-  //     .pipe(
-  //       map(resText => JSON.parse(resText as string) as ResultModel)
-  //     );
-  // }  
-  
+
 }
