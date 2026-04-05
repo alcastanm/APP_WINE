@@ -1,56 +1,39 @@
 <ion-header>
   <ion-toolbar class="header-vino">
-    
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
 
     <ion-title>
-      <ion-select 
+      <ion-select
+        name="regionSelect"
         interface="popover"
         placeholder="Selecciona región"
-        (ionChange)="onRegionChange($event)">
-
-        <ion-select-option 
-          *ngFor="let region of regiones" 
-          [value]="region">
-          {{ region.nombre }}
+        (ionChange)="onRegionChange($event)"
+      >
+        <ion-select-option
+          *ngFor="let region of regiones; let i = index"
+          [value]="i"
+        >
+          {{ region.pais }} - {{ region.nombre }}
         </ion-select-option>
-
       </ion-select>
     </ion-title>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <div class="container">
-
-    <!-- MAPA -->
     <div #mapContainer class="map-container"></div>
 
-    <!-- CARD -->
-    <ion-card 
-      class="bottom-card" 
-      *ngIf="regionSeleccionada"> 
-
+    <ion-card class="bottom-card" *ngIf="regionSeleccionada">
       <ion-card-header>
-        <ion-card-title>
-          {{ regionSeleccionada.nombre }}
-        </ion-card-title>
-      </ion-card-header> 
-
-      <ion-card-content>
-        {{ regionSeleccionada.descripcion }}
-      </ion-card-content>
-
+        <ion-card-title>{{ regionSeleccionada.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>{{ regionSeleccionada.descripcion }}</ion-card-content>
     </ion-card>
-
   </div>
-
 </ion-content>
-
 
 <!-- <ion-header>
   <ion-toolbar class="header-vino">
