@@ -5,7 +5,23 @@
     </ion-buttons>
 
     <ion-title>
-      <ion-select
+
+      <ion-searchbar
+        placeholder="Buscar región..."
+        [(ngModel)]="searchText"
+        (ionInput)="filtrarRegiones()"
+      ></ion-searchbar>
+
+      <ion-list *ngIf="regionesFiltradas.length > 0">
+        <ion-item
+          button
+          *ngFor="let region of regionesFiltradas; let i = index"
+          (click)="seleccionarRegion(region)"
+        >
+          {{ region.pais }} - {{ region.nombre }}
+        </ion-item>
+      </ion-list>      
+      <!-- <ion-select
         name="regionSelect"
         interface="popover"
         placeholder="Selecciona región"
@@ -17,7 +33,7 @@
         >
           {{ region.pais }} - {{ region.nombre }}
         </ion-select-option>
-      </ion-select>
+      </ion-select> -->
     </ion-title>
   </ion-toolbar>
 </ion-header>

@@ -7,13 +7,33 @@ import { environment } from "../../../../environments/environment.prod";
 import { Regions } from "../../../CORE/service/REGION/regions";
 import { ResultModel } from 'src/app/MODELS/result-Models';
 import { FormsModule } from '@angular/forms';
+// import {
+//   IonContent,
+//   IonCard,
+//   IonCardContent,
+//   IonCardHeader,
+//   IonCardTitle,
+//   IonItem,
+//   IonLabel,
+//   IonInput,
+//   IonTextarea,
+//   IonButton,
+//   IonIcon,
+//   IonSelect
+// } from '@ionic/angular/standalone';
+
+
+
 
 @Component({
   selector: 'app-regions',
   templateUrl: './regions.component.html',
   styleUrls: ['./regions.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule,FormsModule],
+  imports: [CommonModule, 
+            IonicModule,
+            FormsModule
+          ],
 })
 export class RegionsComponent implements OnInit, AfterViewInit {
 
@@ -28,6 +48,9 @@ export class RegionsComponent implements OnInit, AfterViewInit {
   regionLayer!: L.GeoJSON;
   bodegasMarkers: L.Marker[] = [];
 
+  searchText: string = '';
+  regionesFiltradas: any[] = [];  
+
   geojsonroute = environment.geojsonRoute
 
   constructor(private cdr: ChangeDetectorRef,
@@ -39,21 +62,6 @@ export class RegionsComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.getregions()
     }, 1000);
-
-    // this.regiones = [
-    //   {
-    //     nombre: 'Valle del Limarí',
-    //     descripcion: 'Región vitivinícola en Chile',
-
-    //     geojson: `${this.geojsonroute}chile/limarí.geojson`,
-
-        // bodegas: [
-        //   { nombre: 'Bodega Villa Señor', lat: -30.55, lng: -71.05 },
-        //   { nombre: 'Viña Concha y Toro', lat: -30.60, lng: -71.00 },
-        //   { nombre: 'Bodega Tabalí', lat: -30.58, lng: -71.02 }
-        // ]
-    //   }
-    // ];
   }
 
   getregions()
@@ -65,18 +73,22 @@ export class RegionsComponent implements OnInit, AfterViewInit {
           if(res.isSuccess)
             {
               res.data.forEach((element:any) => {
+                  const BODS:any=[]
+                   element.wineries.forEach((elementBod:any) => {
+                    const nwbod = { 'nombre':elementBod.winery_name,
+                                    'lat':elementBod.latitude,
+                                    'lng':elementBod.longitude}
+                    BODS.push(nwbod)                
+                  });
                   const nwNode = {
                             'pais':element.country,
                             'nombre':element.name,
                             'descripcion':element.description,
-                            'geojson':`${this.geojsonroute}${element.country}/${element.geojson}`}
+                            'geojson':`${this.geojsonroute}${element.country}/${element.geojson}`,
+                            'bodegas':BODS}
                   this.regiones.push(nwNode)          
 
-                // bodegas: [
-                //   { nombre: 'Bodega Villa Señor', lat: -30.55, lng: -71.05 },
-                //   { nombre: 'Viña Concha y Toro', lat: -30.60, lng: -71.00 },
-                //   { nombre: 'Bodega Tabalí', lat: -30.58, lng: -71.02 }
-                // ]
+
               });
               
               const regionInicial = this.regiones[0];
@@ -90,6 +102,16 @@ export class RegionsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: 'assets/marker-icon-2x.png',
+      iconUrl: 'assets/marker-icon.png',
+      shadowUrl: 'assets/marker-shadow.png',
+    });
+
+    //creacion del mapa
     this.map = L.map(this.mapContainer.nativeElement, {
       center: [-30.6, -71.2],
       zoom: 8
@@ -102,10 +124,6 @@ export class RegionsComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.map.invalidateSize();
     }, 1000);
-
-    // const regionInicial = this.regiones[0];
-    // this.regionSeleccionada = regionInicial;
-    // this.actualizarMapa(regionInicial);
   }
 
   actualizarMapa(region: any): void {
@@ -140,29 +158,29 @@ export class RegionsComponent implements OnInit, AfterViewInit {
               this.map.fitBounds(this.regionLayer.getBounds());
 
               // 🔥 ICONO
-              // const grapeIcon = L.divIcon({
-              //   html: `...`,
-              //   className: '',
-              //   iconSize: [40, 40],
-              //   iconAnchor: [20, 40]
-              // });
+              const grapeIcon = L.divIcon({
+                html: `<div style="font-size:30px;">🍇</div>`,
+                className: '',
+                iconSize: [40, 40],
+                iconAnchor: [20, 40]
+              });
 
               // 🔥 BODEGAS (AHORA SÍ)
-              // region.bodegas.forEach((bodega: any) => {
+              region.bodegas.forEach((bodega: any) => {
 
-              //   const marker = L.marker([bodega.lat, bodega.lng], {
-              //     icon: grapeIcon
-              //   }).addTo(this.map);
+                const marker = L.marker([bodega.lat, bodega.lng], {
+                  icon: grapeIcon
+                }).addTo(this.map);
 
-              //   marker.bindTooltip(bodega.nombre, {
-              //     permanent: true,
-              //     direction: 'top',
-              //     offset: [0, -30],
-              //     className: 'custom-tooltip'
-              //   });
+                marker.bindTooltip(bodega.nombre, {
+                  permanent: true,
+                  direction: 'top',
+                  offset: [0, -30],
+                  className: 'custom-tooltip'
+                });
 
-              //   this.bodegasMarkers.push(marker);
-              // });
+                this.bodegasMarkers.push(marker);
+              });
 
             });
       }else
@@ -181,6 +199,27 @@ export class RegionsComponent implements OnInit, AfterViewInit {
     this.regionSeleccionada = region;
     this.actualizarMapa(region);
   }
+
+
+
+  filtrarRegiones() {
+    const texto = this.searchText.toLowerCase();
+
+    this.regionesFiltradas = this.regiones.filter((r: any) =>
+      `${r.pais} ${r.nombre}`.toLowerCase().includes(texto)
+    );
+  }
+
+  seleccionarRegion(region: any) {
+    this.regionSeleccionada = region;
+    this.actualizarMapa(region);
+
+    // limpiar búsqueda
+    this.searchText = `${region.pais} - ${region.nombre}`;
+    this.regionesFiltradas = [];
+  }  
+
+
 }
 
 
